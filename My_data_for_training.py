@@ -1,0 +1,55 @@
+import json
+
+# The corrected data format
+data = [
+    {"premise": "Families waiting in line at an amusement park for their turn to ride.", "hypothesis": "People are standing in line for a ride at an amusement park.", "label": 0},
+    {"premise": "At an outdoor event in an Asian-themed area, a crowd congregates as one person in a yellow Chinese dragon costume confronts the camera.", "hypothesis": "A person in a Chinese dragon costume is at an outdoor event.", "label": 0},
+    {"premise": "A taxi SUV drives past an urban construction site, as a man walks down the street in the other direction.", "hypothesis": "An SUV and a man are moving in opposite directions on the street.", "label": 0},
+    {"premise": "A shirtless man is singing into a microphone while a woman next to him plays an accordion.", "hypothesis": "A man is performing while a woman plays an instrument.", "label": 0},
+    {"premise": "The two farmers are working on a piece of John Deere equipment.", "hypothesis": "Two farmers are fixing John Deere machinery.", "label": 0},
+    {"premise": "A person rides his bicycle in the sand beside the ocean.", "hypothesis": "A person is riding a bike on the beach.", "label": 0},
+    {"premise": "Two black little boys hanging over an upside-down bicycle, one examining the pedal.", "hypothesis": "Two boys are inspecting a bicycle outside.", "label": 0},
+    {"premise": "A brown dog and a black dog on the edge of the ocean with a wave under them; boats are on the water in the background.", "hypothesis": "Two dogs are standing near the ocean with boats in the background.", "label": 0},
+    {"premise": "A group of people prepare hot air balloons for takeoff.", "hypothesis": "Hot air balloons are being prepared for a flight.", "label": 0},
+    {"premise": "A group of young people with instruments are on stage.", "hypothesis": "People are playing instruments on stage.", "label": 0},
+    {"premise": "A young boy with black hair is holding onto a gun secured to a vehicle driven by a young man wearing a bright pink shirt.", "hypothesis": "A young boy and a man are interacting with a vehicle-mounted gun.", "label": 0},
+    {"premise": "A woman is talking on the phone while standing next to a dog.", "hypothesis": "A woman is on the phone beside her dog.", "label": 0},
+    {"premise": "Three young boys, one holding a camera and another holding a green toy, all wearing t-shirts and smiling.", "hypothesis": "Three boys are having fun and smiling.", "label": 0},
+    {"premise": "A man and a woman are looking at produce on display.", "hypothesis": "Two people are examining vegetables.", "label": 0},
+    {"premise": "People are throwing tomatoes at each other.", "hypothesis": "People are having fun throwing tomatoes.", "label": 0},
+    {"premise": "Number 916 is hoping that he is going to win the race.", "hypothesis": "A participant is confident about winning the race.", "label": 0},
+    {"premise": "Girl plays with colorful letters on the floor.", "hypothesis": "A girl is enjoying learning with colorful letters.", "label": 0},
+    {"premise": "A man wandering in the desert as the clouds roll in.", "hypothesis": "A man is exploring the desert under cloudy skies.", "label": 0},
+    {"premise": "A lady with bright orange hair walking in a crowd.", "hypothesis": "A woman with orange hair is walking among people.", "label": 0},
+    {"premise": "A man running a marathon talks to his friend.", "hypothesis": "A marathon runner is chatting with someone nearby.", "label": 0},
+    {"premise": "A group of people sit on benches at a park outside a building.", "hypothesis": "Several people are relaxing on benches in a park.", "label": 0},
+    {"premise": "Number 13 kicks a soccer ball towards the goal during children's soccer game.", "hypothesis": "A child is attempting to score a goal in soccer.", "label": 0},
+    {"premise": "This is the image of two Asian men squatting near a mop-pad.", "hypothesis": "Two men are crouched down near cleaning equipment.", "label": 0},
+    {"premise": "An older gentleman speaking at a podium.", "hypothesis": "A man is delivering a speech to an audience.", "label": 0},
+    {"premise": "A man poses for a photo in front of a Chinese building by jumping.", "hypothesis": "A man is jumping for a photo in front of a cultural site.", "label": 0},
+    {"premise": "A couple bows their head as a man in a decorative robe reads from a scroll in Asia with a black late model station wagon in the background.", "hypothesis": "A traditional ceremony is being conducted with a car in the background.", "label": 0},
+    {"premise": "A boy looks surly as his father looks at the camera.", "hypothesis": "A child is standing near his father during a photo.", "label": 0},
+    {"premise": "A boy in red slides down an inflatable ride.", "hypothesis": "A child is enjoying a slide on an inflatable structure.", "label": 0},
+    {"premise": "Two people are waiting for a train at a station.", "hypothesis": "Two passengers are standing at a train platform.", "label": 0},
+    {"premise": "Two men sitting on a subway are reading, with coats and scarves on, but have seemed to have lost their pants.", "hypothesis": "Two men are sitting on a subway without pants.", "label": 2},
+    {"premise": "A man with a beard skateboarding and a boy with a blue and black backpack riding a green bike in the background.", "hypothesis": "A bearded man is skateboarding while a boy rides a bike nearby.", "label": 0},
+    {"premise": "Two female workers sit on some steps during work.", "hypothesis": "Two women are taking a break and sitting on steps.", "label": 0},
+    {"premise": "Two boys stand in an ocean as the sun sets.", "hypothesis": "The boys are enjoying the water during a sunset.", "label": 0},
+    {"premise": "Group yoga class exercising.", "hypothesis": "A group of people are doing yoga poses in a class.", "label": 0},
+    {"premise": "A boy in a baseball cap jumps over a flight of stairs.", "hypothesis": "A boy is performing a jump on the stairs outdoors.", "label": 0},
+    {"premise": "A man is sitting in on the side of the street with brass pots.", "hypothesis": "A man is sitting on the street displaying brass pots.", "label": 0},
+    {"premise": "A woman is using clothespins to hang up laundry outside on a laundry line.", "hypothesis": "A woman is hanging freshly washed clothes on a line.", "label": 0},
+    {"premise": "People dressed in costumes walking down a street.", "hypothesis": "People are dressed in costumes for a parade or celebration.", "label": 0},
+    {"premise": "This mother and her daughter and granddaughter are having car trouble, and the poor little girl looks hot out in the heat.", "hypothesis": "The family is experiencing car problems in a hot environment.", "label": 0},
+    {"premise": "This mother and her daughter and granddaughter are having car trouble, and the poor little girl looks hot out in the heat.", "hypothesis": "The family is stuck outside in the heat due to car issues.", "label": 0},
+    {"premise": "A woman holds her child out of a red window, next to a Color TV sign.", "hypothesis": "A woman and child are outside a store near a TV advertisement.", "label": 0},
+    {"premise": "A man is swimming inside of a pool.", "hypothesis": "The person is swimming in a pool.", "label": 0},
+    {"premise": "A little girl sitting in a seat.", "hypothesis": "The girl is seated in a chair.", "label": 0},
+    {"premise": "A hispanic fruit market with many different fruits and vegetables in view on a city street with a man passing the store dressed in dark pants and a hoodie.", "hypothesis": "The market sells fruits and vegetables on a busy city street.", "label": 0},
+    {"premise": "A hispanic fruit market with many different fruits and vegetables in view on a city street with a man passing the store dressed in dark pants and a hoodie.", "hypothesis": "A market is selling a variety of fruits and vegetables.", "label": 0},
+    {"premise": "A hispanic fruit market with many different fruits and vegetables in view on a city street with a man passing the store dressed in dark pants and a hoodie.", "hypothesis": "The store is displaying many fruits and vegetables, and a man is passing by.", "label": 0}
+]
+
+#Save to a JSON file in proper array format
+with open('corrected_predictions_2.json', 'w') as f:
+    json.dump(data, f)  # This will write the entire list of dictionaries as a valid JSON array
